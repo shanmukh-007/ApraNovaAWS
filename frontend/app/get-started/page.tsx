@@ -49,28 +49,8 @@ export default function GetStartedPage() {
     setError('');
     
     try {
-      // Stripe Checkout will collect email and name
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/create-simple-checkout/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          track: trackCode,
-          success_url: `${window.location.origin}/payment/success`,
-          cancel_url: `${window.location.origin}/get-started`
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to create checkout session');
-      }
-
-      const data = await response.json();
-      
-      // Redirect to Stripe Checkout (will ask for email there)
-      window.location.href = data.url;
+      // Bypass payment - go directly to signup
+      window.location.href = `/signup?track=${trackCode}`;
       
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
@@ -127,8 +107,8 @@ export default function GetStartedPage() {
                     {track.description}
                   </CardDescription>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold">${track.price}</span>
-                    <span className="text-gray-500 ml-2">one-time payment</span>
+                    <span className="text-4xl font-bold text-green-600">FREE</span>
+                    <span className="text-gray-500 ml-2">no payment required</span>
                   </div>
                 </CardHeader>
                 
