@@ -252,6 +252,19 @@ export default function StudentDashboardPage() {
                 {currentProject ? "Start Project" : "View Projects"}
               </Link>
             </Button>
+            {toolUrls.workspace && (
+              <Button 
+                asChild 
+                size="lg"
+                variant="outline"
+                className="border-2 border-purple-300 hover:bg-purple-50 dark:border-purple-700 dark:hover:bg-purple-950/30"
+              >
+                <a href={toolUrls.workspace} target="_blank" rel="noopener noreferrer">
+                  <Code className="mr-2 h-4 w-4" />
+                  Open VS Code
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </div>

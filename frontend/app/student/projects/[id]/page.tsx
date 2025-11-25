@@ -245,6 +245,19 @@ export default function ProjectDetailPage() {
 
           {/* Action Buttons */}
           <div className="flex gap-3">
+            {/* VS Code Button */}
+            {userProfile?.workspace_url && (
+              <Button 
+                asChild 
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
+              >
+                <a href={userProfile.workspace_url} target="_blank" rel="noopener noreferrer">
+                  <Code className="mr-2 h-5 w-5" />
+                  Start in VS Code
+                </a>
+              </Button>
+            )}
             {project.github_repo_url && (
               <Button asChild variant="outline">
                 <a href={project.github_repo_url} target="_blank" rel="noopener noreferrer">
